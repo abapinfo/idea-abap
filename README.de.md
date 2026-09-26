@@ -1,4 +1,4 @@
-# <img src="resources/icon.png" alt="IDEA" height="40" align="absmiddle"> IDEA — Integrierte Entwicklungsumgebung für ABAP
+# <img src="https://raw.githubusercontent.com/abapinfo/idea-abap/main/resources/icon.png" alt="IDEA" height="40" align="absmiddle"> IDEA — Integrierte Entwicklungsumgebung für ABAP
 
 [Español](README.md) · [English](README.en.md) · **Deutsch** · [Français](README.fr.md)
 
@@ -28,6 +28,7 @@ Schluss mit dem Kopieren und Einfügen von Code zwischen SAP GUI und einem KI-Ch
 | 🔒 **Keine Überraschungen** | Standardmäßig Anzeigemodus, explizite Sperre zum Bearbeiten, Transportaufträge und Aktivierung genau wie im SAP-Standard. |
 | 🕘 **Verlauf im Handumdrehen** | Jedes Speichern und jede Aktivierung wird in der Sitzung festgehalten: Versionen vergleichen oder eine frühere wiederherstellen, ohne den Editor zu verlassen. |
 | 🎨 **Formatierung, die Ihre Diffs respektiert** | Eigener Formatierer, der nur die vom Entwickler geänderten Zeilen anfasst — kein versehentliches Umformatieren ganzer Dateien. |
+| 🖥️ **Quelltext-Editor wie in der SAP GUI** | In den Tab eingebetteter Editor: Anzeige- oder Bearbeitungsmodus, Klassen blockweise oder vollständig, bearbeitbare Beschreibungen, direkte Navigation zu REPT/CUA/Dynpros und lokalen Includes, sowie volle Kontrolle über die Wartezeiten gegenüber SAP. |
 | 🧩 **Mehr als Standard-ADT** *(erweiterte Funktion)* | Bearbeitung von Textelementen (REPT), Data Dictionary, GUI-Status/-Titel und Dynpros — alles, was das SAP-ADT außerhalb der SAP GUI nicht bearbeiten lässt. |
 
 ---
@@ -55,6 +56,27 @@ Aus der «SAP-Objektsuche» geöffnete Objekte starten im **Anzeigemodus** (blä
 4. Erneut `Ctrl+F1` oder `Ctrl+Shift+U` zum Verwerfen der Änderungen kehrt in den Anzeigemodus zurück und gibt die Sperre frei. Auch das Schließen des Tabs gibt die Sperre frei.
 
 Ein 🔴-Symbol auf dem Tab weist darauf hin, dass gespeicherte Änderungen noch aktiviert werden müssen.
+
+---
+
+## WebView-Quelltexteditor: wie in der SAP GUI, aber in VS Code
+
+Ein Quelltext-Editor, der direkt im Tab eingebettet ist, mit derselben Engine, die auch VS Code selbst verwendet (Monaco), und darauf ausgelegt, gegen SAP genau wie in SE24/SE38 zu arbeiten – mit viel Bedienkomfort direkt zur Hand.
+
+**Klassen bearbeiten wie in der SAP GUI**
+- **Vollständiger Quelltext oder blockweise**: wechseln Sie zwischen der vollständigen Klasse oder nur der Methode, die Sie interessiert, mit ihrer *Deklaration* oben und ihrer *Implementierung* unten, beide bearbeitbar und mit demselben Bildlauf — genau wie in SE24.
+- **Beschreibungen**: bearbeiten Sie in einer eigenen Tabelle die Kurztexte von Attributen, Typen, Methoden, Ereignissen und Parametern der Klasse oder des Interfaces, ohne den Editor zu verlassen; sie werden zusammen mit dem übrigen Quelltext gespeichert.
+- **Schaltfläche Navigieren**: springt direkt zu den Textelementen (REPT), zum GUI-Status/-Titel (CUA) und zu den Dynpros des Objekts sowie zu den lokalen Includes der Klasse — Definitionen (`CCDEF`), Implementierungen (`CCIMP`), Makros (`CCMAC`) und ABAP-Unit-Testklassen (`CCAU`) —, jedes in seinem eigenen Tab.
+
+**Volle Kontrolle über die Wartezeiten gegenüber SAP**
+- Während gegen SAP gesperrt, gespeichert, aktiviert oder formatiert wird, sperrt sich der gesamte Editor (eine Ebene zeigt an, was gerade geschieht), damit Sie nicht weiterschreiben oder eine weitere Aktion auslösen können, während SAP antwortet.
+- Braucht SAP zu lange, entsperrt sich der Editor von selbst und warnt Sie, statt Sie warten zu lassen, ohne zu wissen, was passiert.
+- Der Status des Objekts — *Unverändert*, *Geändert, nicht gesichert* oder *Geändert, nicht aktiviert* — ist immer in der eigenen Leiste des Editors zu sehen.
+
+**Die gesamte Bedienung mit einem Klick über die eigene Werkzeugleiste**
+- Schaltflächen für Ändern/Anzeigen, Sichern, Aktivieren, Suchen und Ersetzen, Versionshistorie (mit integriertem Diff-Vergleich), Änderungen der Sitzung, Beschreibungen, Navigieren und Nachrichten — ohne über die Befehlspalette zu gehen.
+- **Konfigurierbare Tastenkürzel** je Aktion, mit Konfliktprüfung und einheitlich für alle VS Code-Fenster.
+- Snippets, Autovervollständigung gegen SAP und KI-Codevorschläge direkt im Editor integriert.
 
 ---
 
@@ -100,7 +122,7 @@ Der MCP-Server ermöglicht es einem KI-Assistenten, ABAP-Code direkt im verbunde
 
 Mit einer kleinen Komponente in Ihrem SAP-System (konfiguriert in `idea.endpointAmpliacionADT`) schaltet IDEA in VS Code frei, was nicht einmal das Standard-ADT von SAP bietet:
 
-- **Datenabfragen** Die KI kann SAP-Tabellen abfragen (nur lesend)
+- **Datenabfragen** Die KI kann SAP-Tabellen abfragen (nur lesend). Das ist es, was der KI ihr volles Potenzial ermöglicht.
 - **Leeres Grundgerüst einer Klasse, eines Programms oder eines Interfaces anlegen**
 - **Textelemente (REPT)** von Programmen, Klassen und Interfaces — direkte Bearbeitung, ohne SE38/SE24.
 - **Data Dictionary**: Datenelemente, Strukturen, Domänen und Tabellentypen, mit Querverweis-Navigation zwischen ihnen.

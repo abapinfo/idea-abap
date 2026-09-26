@@ -1,4 +1,4 @@
-# <img src="resources/icon.png" alt="IDEA" height="40" align="absmiddle"> IDEA — Integrated Development Environment for ABAP
+# <img src="https://raw.githubusercontent.com/abapinfo/idea-abap/main/resources/icon.png" alt="IDEA" height="40" align="absmiddle"> IDEA — Integrated Development Environment for ABAP
 
 [Español](README.md) · **English** · [Deutsch](README.de.md) · [Français](README.fr.md)
 
@@ -28,6 +28,7 @@ No more copying and pasting code between SAP GUI and an AI chat. No more losing 
 | 🔒 **Zero surprises** | Display mode by default, explicit lock to edit, transport requests and activation handled exactly as in standard SAP. |
 | 🕘 **On-the-fly history** | Every save and every activation is recorded in the session: compare versions or restore an earlier one without leaving the editor. |
 | 🎨 **Formatting that respects your diffs** | Its own formatter only touches the lines the developer has changed — no more accidentally reformatting whole files. |
+| 🖥️ **Source editor just like SAP GUI** | Editor embedded right in the tab: display or edit mode, classes by block or in full, editable descriptions, direct navigation to REPT/CUA/Dynpros and local includes, and total control over the waits against SAP. |
 | 🧩 **Beyond standard ADT** *(extended feature)* | Editing of text elements (REPT), data dictionary, GUI Status/Title screens and Dynpros — everything SAP's ADT won't let you touch outside SAP GUI. |
 
 ---
@@ -55,6 +56,27 @@ Objects opened from «SAP object search» start in **Display mode** (bluish back
 4. `Ctrl+F1` again, or `Ctrl+Shift+U` to discard changes, returns to Display mode and releases the lock. Closing the tab also releases the lock.
 
 A 🔴 badge on the tab warns that there are saved changes pending activation.
+
+---
+
+## WebView source editor: just like SAP GUI, but in VS Code
+
+A source code editor embedded right in the tab, with the same engine VS Code itself uses (Monaco), built to work against SAP just like in SE24/SE38 with plenty of built-in operations.
+
+**Edit classes just like in SAP GUI**
+- **Full source or by blocks**: switch between the whole class or just the method you care about, with its *declaration* on top and its *implementation* below, both editable and sharing the same scroll — just like in SE24.
+- **Descriptions**: edit the short texts of attributes, types, methods, events and parameters of the class or interface in their own table, without leaving the editor; they are saved together with the rest of the source.
+- **Navigate button**: jump straight to the object's text elements (REPT), GUI Status/Title (CUA) and screens (Dynpros), and to the class's local includes — definitions (`CCDEF`), implementations (`CCIMP`), macros (`CCMAC`) and ABAP Unit test classes (`CCAU`) — each one in its own tab.
+
+**Total control over the waits against SAP**
+- While locking, saving, activating or formatting against SAP, the whole editor locks up (a layer shows what's happening) so you can't keep typing or launch another action while SAP is responding.
+- If SAP takes too long, the editor unlocks itself and warns you, instead of leaving you waiting without knowing what's going on.
+- The object's status — *Unmodified*, *Modified, not saved* or *Modified, not activated* — is always visible right in the editor's own bar.
+
+**All the operations, one click away in its own toolbar**
+- Buttons for Edit/Display, Save, Activate, Search and replace, Version history (with a built-in diff viewer), Session changes, Descriptions, Navigate and Messages — no need for the command palette.
+- **Configurable keyboard shortcuts** per action, with conflict validation and shared across every VS Code window.
+- Snippets, SAP code completion and AI code suggestions built right into the editor.
 
 ---
 
@@ -100,7 +122,7 @@ The MCP server lets an AI assistant read and change ABAP code directly in the co
 
 With a small component installed in your SAP system (configured in `idea.endpointAmpliacionADT`), IDEA unlocks inside VS Code what not even SAP's standard ADT offers:
 
-- **Data queries** The AI can query SAP tables (read-only)
+- **Data queries** The AI can query SAP tables (read-only). This is what lets the AI reach its full potential.
 - **Create the empty skeleton of a class, program or interface**
 - **Text elements (REPT)** of programs, classes and interfaces — direct editing, without SE38/SE24.
 - **Data dictionary**: Data elements, structures, domains and table types, with cross-navigation between them.
