@@ -29,7 +29,77 @@ Fini le copier-coller de code entre SAP GUI et un chat IA. Fini de perdre de vue
 | 🕘 **Historique à la volée** | Chaque enregistrement et chaque activation sont consignés dans la session : comparez des versions ou récupérez-en une ancienne sans quitter l'éditeur. |
 | 🎨 **Un formatage qui respecte vos diffs** | Formateur propre qui ne touche que les lignes modifiées par le développeur — fini le reformatage accidentel de fichiers entiers. |
 | 🖥️ **Éditeur de source comme dans SAP GUI** | Éditeur intégré directement dans l'onglet : mode affichage ou édition, classes par blocs ou complètes, descriptions modifiables, navigation directe vers REPT/CUA/Dynpros et les includes locaux, et contrôle total des temps d'attente face à SAP. |
+| 🐞 **Débogueur ABAP intégré** | Points d'arrêt depuis l'éditeur et une fenêtre de débogage par exécution dans SAP, en parallèle : points d'arrêt d'instruction, de méthode, de fonction, de FORM, d'exception ou de message, watchpoints, modification des valeurs et tables internes modifiables. |
+| 🔎 **Liste des utilisations** | Utilisations du mot sous le curseur (`Ctrl+Shift+F3`) ou de chaque message d'une classe de messages, avec l'instruction de chaque utilisation et un saut direct à la ligne. |
+| ✉️ **Classes de messages** | Création et édition des classes de messages (SE91) dans un tableau, avec leur texte explicatif et leur liste d'utilisations. |
+| 🧯 **Dumps de n'importe quelle date, sans gaspiller de tokens** *(fonction étendue)* | Votre IA trouve les dumps de n'importe quelle date (pas seulement ceux des dernières 24 h de l'ADT standard) : d'abord une liste compacte avec la clé, l'erreur et la position de chaque dump ; ensuite, uniquement pour celui qui compte, le résumé ST22 et la pile d'appels. Les variables ou le dump complet seulement si nécessaire. Moins de texte pour l'IA, moins de tokens et des réponses plus rapides. |
 | 🧩 **Au-delà de l'ADT standard** *(fonction étendue)* | Édition des éléments de texte (REPT), du dictionnaire de données, des écrans GUI Status/Title et des Dynpros — tout ce que l'ADT de SAP ne permet pas de modifier hors de SAP GUI. |
+
+---
+
+## Ce que couvre IDEA par rapport aux autres outils
+
+Comparatif sur SAP ECC avec NetWeaver 7.50 entre l'ADT de SAP pour Eclipse, d'autres extensions ABAP pour VS Code, le composant ABAP « ADT Ampliado » (ADT étendu) et IDEA elle-même.
+
+🟢 Couvert · 🟡 Partiel · 🔴 Non disponible · ➖ Pris en charge par l'ADT standard · **AMP** Nécessite l'ADT étendu
+
+| Fonctionnalité | SAP ADT | Autres extensions | ADT étendu | IDEA |
+|---|---|---|---|---|
+| **Objets avec code source** | | | | |
+| Programmes, includes et reports | 🟢 | 🟢 | ➖ | 🟢 |
+| Classes et interfaces | 🟢 | 🟢 | ➖ | 🟢 Par blocs (méthode par méthode) ou complète, comme dans SE24 |
+| Includes locaux de classe <br><sub>`CCDEF · CCIMP · CCMAC · CCAU`</sub> | 🟢 | 🟢 | ➖ | 🟢 |
+| Groupes et modules fonction | 🟢 | 🟢 | ➖ | 🟢 Arbre du groupe ; sans création |
+| Descriptions de classe <br><sub>Textes courts des méthodes, attributs et paramètres</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Tableau modifiable dans l'éditeur |
+| Vues CDS et groupes de types <br><sub>`DDLS · TYPE`</sub> | 🟢 | 🟢 | ➖ | 🔴 |
+| Classes de messages <br><sub>`MSAG`</sub> | 🟢 | 🟢 | ➖ | 🟢 Création, édition en tableau, texte explicatif et utilisations de chaque message |
+| **Dictionnaire de données** | | | | |
+| Éléments de données <br><sub>`DTEL`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
+| Domaines <br><sub>`DOMA`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Valeurs fixes incluses |
+| Structures <br><sub>`TABL`</sub> | 🟢 | 🟢 Comme code source | 🟢 | 🟢 **AMP** Éditeur de champs avec navigation |
+| Tables de base de données <br><sub>`TABL`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
+| Types de table <br><sub>`TTYP`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
+| **Textes et interface classique** | | | | |
+| Éléments de texte <br><sub>`REPT` · symboles de texte et textes de sélection</sub> | 🟡 Selon la release | 🟡 Selon la release | 🟢 | 🟢 **AMP** |
+| GUI Status / Title <br><sub>`CUAD` · SE41</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Création, suppression et édition des fonctions, status et barre |
+| Dynpros <br><sub>`DYNP` · SE51</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Éditeur visuel des champs et conteneurs |
+| **RAP et OData** | | | | |
+| Objets métier RAP <br><sub>`BDEF · SRVD` · uniquement NetWeaver 7.54 ou S/4HANA</sub> | 🟢 | 🟡 Selon l'extension, comme code source | 🔴 | 🔴 |
+| Générateur RAP <br><sub>Table, CDS, comportement et service en une seule étape · uniquement NetWeaver 7.54 ou S/4HANA</sub> | 🟢 | 🔴 | 🔴 | 🔴 |
+| Services OData RAP <br><sub>`SRVB` · service binding et aperçu Fiori · uniquement NetWeaver 7.54 ou S/4HANA</sub> | 🟢 | 🔴 | 🔴 | 🔴 |
+| **Cycle de vie de l'objet** | | | | |
+| Rechercher des objets | 🟢 | 🟢 | ➖ | 🟢 Avec récents et historique |
+| Créer des objets de code <br><sub>Programmes, classes et fonctions</sub> | 🟢 | 🟢 | 🟢 Programmes et classes | 🟡 **AMP** Programmes, classes et classes de messages ; pas de fonctions |
+| Créer des objets du dictionnaire <br><sub>`DTEL · DOMA · TABL · TTYP`</sub> | 🟡 Structures seulement | 🟡 Structures seulement | 🟢 | 🟢 **AMP** |
+| Mode Affichage / Édition <br><sub>Verrouillage explicite de l'objet, comme dans SE38</sub> | 🟡 Verrouille dès qu'on commence à écrire | 🟡 Verrouille dès qu'on commence à écrire | 🟢 Tout objet, dynpros compris | 🟢 Ctrl+F1, état toujours visible |
+| Ordre de transport à l'enregistrement | 🟢 | 🟢 | 🟢 Ordres ouverts et création d'ordre | 🟢 |
+| Activation et objets inactifs | 🟢 | 🟢 Activation en masse | ➖ | 🟢 Avertissement des parties modifiées |
+| Gestion des ordres <br><sub>Libérer, changer de propriétaire, ATC sur l'ordre</sub> | 🟢 | 🟢 | ➖ | 🔴 |
+| Versions et comparaison | 🟢 | 🟢 Plus l'auteur par ligne (blame) | ➖ | 🟡 Historique de la session avec diff |
+| abapGit | 🟢 Plugin | 🟢 | ➖ | 🔴 |
+| **Écrire du code** | | | | |
+| Autocomplétion et aller à la définition | 🟢 | 🟢 | ➖ | 🟢 F2 comme dans SAP GUI |
+| Contrôle de syntaxe | 🟢 | 🟢 | ➖ | 🟢 |
+| Formatage | 🟢 | 🟢 | ➖ | 🟢 Standard SAP ou propre à l'extension (seulement les lignes modifiées) |
+| Liste des utilisations | 🟢 | 🟢 | ➖ | 🟢 Du mot sous le curseur et de chaque message ; avec l'instruction de chaque utilisation |
+| Refactorisation <br><sub>Renommer, extraire une méthode</sub> | 🟢 | 🟡 Corrections rapides | ➖ | 🔴 |
+| Utilitaires façon SAP GUI <br><sub>Commenter avec *, joindre et scinder des instructions, sauter entre blocs</sub> | 🟡 | 🔴 | ➖ | 🟢 |
+| Suggestions d'IA dans l'éditeur | 🔴 | 🟢 GitHub Copilot | ➖ | 🟢 Claude, Gemini ou GitHub Copilot |
+| **Tester et analyser** | | | | |
+| Débogueur | 🟢 | 🟢 | ➖ | 🟢 Plusieurs sessions en parallèle ; points d'arrêt de tout type, watchpoints, disposition et raccourcis configurables |
+| ABAP Unit | 🟢 | 🟢 | ➖ | 🔴 |
+| ATC / Code Inspector | 🟢 | 🟢 | ➖ | 🔴 |
+| Traces de performance | 🟢 | 🟢 | ➖ | 🔴 |
+| Dumps des dernières 24 heures <br><sub>ST22 · flux ADT standard</sub> | 🟢 | 🟢 | ➖ | 🟡 Sans écran : récupère les dumps via l'ADT standard pour les transmettre à l'IA |
+| Dumps de n'importe quelle date <br><sub>ST22 · entre deux dates, avec détail complet et pile d'appels</sub> | 🔴 Uniquement les dernières 24 heures | 🔴 Uniquement les dernières 24 heures | 🟢 | 🟡 **AMP** Sans écran : liste et détail via l'ADT étendu, optimisés pour économiser les tokens de l'IA |
+| Requêtes de données <br><sub>SELECT en lecture seule</sub> | 🟢 Requêtes simples | 🟢 Requêtes simples | 🟢 Requêtes complexes | 🟢 **AMP** Requêtes complexes, pour l'IA |
+| **IA et plusieurs systèmes** | | | | |
+| Serveur MCP pour tout assistant d'IA <br><sub>Claude Code, Copilot, Cursor…</sub> | 🔴 | 🟢 Dépend de l'extension | ➖ | 🟢 |
+| Plusieurs systèmes à la fois <br><sub>Par exemple, développement et production</sub> | 🟢 | 🟢 | ➖ | 🟢 |
+| Connexion en lecture seule <br><sub>Pour les systèmes de production</sub> | 🔴 | 🟡 Avertissement en production | 🟢 | 🟢 L'IA ne peut ni écrire ni activer |
+| Ouvrir dans SAP GUI ce qui n'est pas pris en charge | - | 🟢 SAP GUI ou Web GUI | ➖ | 🟢 SAP GUI ou Web GUI, directement sur l'objet |
+
+L'*ADT étendu* n'est pas un éditeur : c'est le service ABAP qui donne à IDEA ce que l'ADT standard n'expose pas. Sans lui, IDEA ouvre dans SAP GUI les objets marqués **AMP**. Sous S/4HANA (NetWeaver 7.52 ou supérieur), l'ADT standard fournit ses propres éditeurs pour davantage d'objets du dictionnaire et pour les éléments de texte. Les capacités d'IA de SAP (Joule) ne sont pas disponibles sous ECC. RAP et les services OData RAP non plus : sous ECC, les services OData sont créés avec SEGW dans SAP GUI.
 
 ---
 
@@ -68,6 +138,15 @@ Un éditeur de code source intégré directement dans l'onglet, avec le même mo
 - **Descriptions** : modifiez dans un tableau dédié les textes courts des attributs, types, méthodes, événements et paramètres de la classe ou de l'interface, sans quitter l'éditeur ; ils sont enregistrés avec le reste du source.
 - **Bouton Naviguer** : accédez directement aux éléments de texte (REPT), au GUI Status/Title (CUA) et aux écrans (Dynpros) de l'objet, ainsi qu'aux includes locaux de la classe — définitions (`CCDEF`), implémentations (`CCIMP`), macros (`CCMAC`) et classes de test ABAP Unit (`CCAU`) —, chacun dans son propre onglet.
 
+**Liste des utilisations**
+- **Bouton Références** (`Ctrl+Shift+F3`) : liste où est utilisé l'identifiant sous le curseur — classe, interface, méthode, attribut, variable, programme, fonction, type, élément de données, table, structure ou domaine.
+- Chaque utilisation affiche le type d'objet, son nom, la ligne et l'instruction complète ; un clic sur la ligne ouvre l'objet à cet endroit.
+- Depuis un `MESSAGE e001(zclasse)` ou un `MESSAGE ID 'ZCLASSE' ... NUMBER '001'`, `F2` navigue vers la classe de messages avec le focus sur ce message.
+
+**Débogage depuis l'éditeur**
+- **Bouton Point d'arrêt** (`F9`) : pose ou retire un point d'arrêt sur la ligne du curseur ; il est marqué en rouge dans la marge.
+- **Bouton Exécuter** (`Ctrl+F8`) : ouvre l'objet dans Web GUI pour le lancer et qu'il s'arrête aux points d'arrêt.
+
 **Contrôle total des temps d'attente face à SAP**
 - Pendant qu'il verrouille, enregistre, active ou formate face à SAP, l'éditeur se verrouille entièrement (une couche indique ce qui se passe) pour empêcher de continuer à taper ou de lancer une autre action tant que SAP n'a pas répondu.
 - Si SAP met trop de temps, l'éditeur se déverrouille de lui-même et vous prévient, au lieu de vous laisser attendre sans savoir ce qui se passe.
@@ -77,6 +156,41 @@ Un éditeur de code source intégré directement dans l'onglet, avec le même mo
 - Boutons pour Modifier/Afficher, Enregistrer, Activer, Rechercher et remplacer, Historique des versions (avec comparateur de différences intégré), Modifications de la session, Descriptions, Naviguer et Messages — sans passer par la palette de commandes.
 - **Raccourcis clavier configurables** par action, avec validation des conflits et communs à toutes les fenêtres de VS Code.
 - Extraits de code (snippets), autocomplétion face à SAP et suggestions de code par IA intégrées directement dans l'éditeur.
+
+---
+
+## Débogueur ABAP
+
+Déboguez dans VS Code les programmes qui s'exécutent dans SAP, avec une fenêtre dédiée pour chaque exécution.
+
+1. **IDEA : Démarrer le débogage ABAP** met la connexion active à l'écoute des exécutions dans SAP.
+2. Posez des points d'arrêt dans l'éditeur avec `F9` (ou le bouton *Point d'arrêt*).
+3. Exécutez le programme dans SAP (par exemple, avec le bouton *Exécuter* de l'éditeur, qui l'ouvre dans Web GUI).
+4. Quand l'exécution atteint un point d'arrêt, une fenêtre de débogage s'ouvre. Si plusieurs exécutions arrivent, une fenêtre s'ouvre pour chacune, en parallèle (jusqu'à 4 ; au-delà, elles sont libérées sans ouvrir de fenêtre).
+5. **IDEA : Arrêter le débogage ABAP** retire de SAP les points d'arrêt posés et ferme les sessions.
+
+**La fenêtre de débogage**
+- **Barre d'outils** : Pas à pas (`F5`), Exécuter (`F6`), Retour (`F7`), Continuer (`F8`), point d'arrêt sur la ligne (`F9`), autres points d'arrêt (`Shift+F9`), watchpoint (`Shift+F4`), liste des points d'arrêt et watchpoints, disposition (`F10`) et raccourcis.
+- **En-tête fixe** : programme, include, type et nom du bloc, ligne, `SY-SUBRC` et `SY-TABIX`.
+- **Code** : toujours en affichage ; les méthodes s'affichent par blocs comme dans l'éditeur. Double-clic sur le numéro de ligne pour poser ou retirer un point d'arrêt ; double-clic ou `F2` sur une variable l'ajoute à *Variables* ; `F12` passe à l'instruction du curseur.
+- **Variables, Locales et Globales** : nom, valeur, type technique, type absolu et valeur hexadécimale. Les valeurs se modifient avec le crayon ; les structures se déplient ; les tables internes s'affichent par pages, avec ajout et suppression de lignes. Tout peut être copié dans le presse-papiers pour le coller dans un tableur.
+- **Navigation** : la pile d'appels (niveau, type d'événement et événement, programme, include et ligne) ; double-clic pour voir un autre niveau.
+- **Autres points d'arrêt** : d'instruction ABAP, de méthode (de classe globale ou locale), de fonction, de FORM, d'exception de classe, de message ou de code source, avec condition facultative. Ils sont mémorisés et reposés à la prochaine exécution du programme.
+- **Watchpoints** : s'arrêtent quand une variable change, avec condition facultative.
+- **Disposition de l'écran configurable** : vous choisissez le nombre de lignes et de colonnes et le cadre de chaque cellule (Code, Navigation, Variables, Locales, Globales). Les dispositions s'enregistrent sous un nom et valent pour toutes les fenêtres ; la taille de chaque cadre se change en faisant glisser les barres qui les séparent.
+- **Raccourcis clavier configurables** pour toutes les actions, depuis le panneau lui-même (bouton *Raccourcis*) ou avec le paramètre `idea.depuracion.atajos`.
+
+---
+
+## Classes de messages (SE91)
+
+Depuis la « Recherche d'objet SAP » (type *Classe de messages*), ou en naviguant avec `F2` depuis un `MESSAGE`, la classe s'ouvre dans un tableau modifiable. Elle passe entièrement par l'ADT standard, sans le composant étendu.
+
+- Elle s'ouvre en Mode Affichage ; *Modifier* verrouille la classe et *Enregistrer* l'enregistre en demandant l'ordre de transport si nécessaire.
+- Tableau avec numéro, texte, longueur et indicateur « auto-explicatif » ; il se filtre par colonne et peut être copié entier dans le presse-papiers.
+- Création et suppression de messages, avec contrôle à l'enregistrement (numéros à 3 chiffres sans doublon, textes obligatoires et longueur maximale).
+- Pour chaque message : voir son **texte explicatif**, voir **où il est utilisé** (avec saut direct vers chaque utilisation) ou l'ouvrir dans SE91.
+- Le bouton *Nouveau* de la « Recherche d'objet SAP » crée une classe de messages vide et l'ouvre en Mode Édition.
 
 ---
 
@@ -123,6 +237,7 @@ Le serveur MCP permet à un assistant IA de lire et de modifier du code ABAP dir
 Avec un petit composant installé dans votre système SAP (configuré dans `idea.endpointAmpliacionADT`), IDEA débloque dans VS Code ce que même l'ADT standard de SAP n'offre pas :
 
 - **Requêtes de données** L'IA peut consulter les tables SAP (lecture seule). C'est ce qui permet à l'IA de donner toute sa puissance.
+- **Dumps de n'importe quelle date (ST22)**, pas seulement ceux des dernières 24 heures de l'ADT standard, et optimisés pour l'IA : liste compacte, détail uniquement du dump qui compte et données complètes seulement si nécessaire, si bien que l'IA consomme beaucoup moins de tokens.
 - **Créer la structure vide d'une classe, d'un programme ou d'une interface**
 - **Éléments de texte (REPT)** des programmes, classes et interfaces — édition directe, sans SE38/SE24.
 - **Dictionnaire de données** : éléments de données, structures, domaines et types de table, avec navigation croisée entre eux.
@@ -169,6 +284,16 @@ Sans ce composant, ces actions restent disponibles : elles ouvrent simplement l'
 | `IDEA : Aller à la fin du bloc` | `Ctrl+Shift+↓` / `Ctrl+Alt+PgSuiv` | Saute à la fin du bloc où se trouve le curseur. |
 | Atteindre la définition | `F2` / `F12` / `Ctrl+Click` | Navigue vers la définition de l'objet sous le curseur. Dans les fichiers ABAP, `F2` remplace «Renommer» (comme dans SAP GUI). |
 | `IDEA : Rechercher et remplacer` | `Ctrl+Shift+F` | Ouvre le panneau «Recherche dans le code» avec le focus sur le champ de recherche. Fonctionne toujours, pas seulement dans l'éditeur ABAP. |
+
+**Débogage**
+
+| Commande | Raccourci | Description |
+|---|---|---|
+| `IDEA : Démarrer le débogage ABAP` | — | Met la connexion active à l'écoute des exécutions dans SAP ; chacune qui s'arrête sur un point d'arrêt ouvre sa fenêtre de débogage. |
+| `IDEA : Point d arrêt sur la ligne courante` | `F9` | Pose ou retire un point d'arrêt sur la ligne du curseur. |
+| `IDEA : Arrêter le débogage ABAP` | — | Retire de SAP les points d'arrêt posés, arrête l'écoute et ferme les fenêtres de débogage. |
+| Liste des utilisations | `Ctrl+Shift+F3` | (Éditeur de source) Où est utilisé l'identifiant sous le curseur. |
+| Exécuter dans Web GUI | `Ctrl+F8` | (Éditeur de source) Ouvre l'objet dans Web GUI pour l'exécuter. |
 
 **Connexions, serveur MCP et SAP GUI**
 
@@ -232,6 +357,12 @@ Paramètres sous `idea.*` (Fichier → Préférences → Paramètres, ou depuis 
 | Développement autorisé | Non (`true`) | Si décoché, la connexion est en **consultation seule** : l'IA peut seulement chercher, lire, ouvrir en Affichage, consulter des données et lister les dumps ; elle ne peut ni écrire ni activer. Prévu pour les systèmes de production. |
 | Démarrage silencieux | Non (`false`) | Démarre le serveur MCP de cette connexion à l'ouverture de VS Code, sans rien demander. Plusieurs connexions peuvent être cochées pour avoir plusieurs serveurs en même temps. |
 
+**Débogueur**
+
+| Option | Valeurs | Rôle |
+|---|---|---|
+| `idea.depuracion.atajos` | Objet action → touche | Raccourcis de la fenêtre de débogage. Par défaut : `F5` pas à pas, `F6` exécuter, `F7` retour, `F8` continuer, `F9` point d'arrêt, `Shift+F9` autres points d'arrêt, `Shift+F4` watchpoint, `F2` ajouter une variable, `F12` passer à l'instruction, `F10` disposition. Ils se modifient aussi depuis le bouton *Raccourcis* du panneau. |
+
 **Fonctions étendues et SAP GUI**
 
 | Option | Valeurs | Rôle |
@@ -263,7 +394,9 @@ IDEA distingue deux notions :
 | `abap_read_object_source` | Lit le code source d'un objet. | ✅ |
 | `abap_open_object` | Ouvre un objet dans VS Code sous le contrôle de l'extension. | ✅ |
 | `abap_execute_query` | Exécute une requête `SELECT` en lecture seule sur la base de données *(fonction étendue)*. | ✅ |
-| `abap_list_dumps` | Liste les dumps d'exécution (équivalent de ST22). | ✅ |
+| `abap_list_dumps_24h` | Liste les dumps d'exécution des dernières 24 heures (flux ADT standard). | ✅ |
+| `abap_list_dumps` | Liste les dumps d'exécution de n'importe quelle date (équivalent de ST22), sous forme compacte *(fonction étendue)*. | ✅ |
+| `abap_get_dump_detalle` | Renvoie le détail d'un dump : résumé ST22 et pile d'appels ; variables ou dump complet uniquement sur demande *(fonction étendue)*. | ✅ |
 | `abap_write_object_source` | Écrit le source d'un objet (avec diff et confirmation). | — |
 | `abap_activate_object` | Active un objet (avec confirmation). | — |
 | `abap_llamar_herramienta_desarrollo` | Opérations du composant étendu : verrous, ordres de transport, éléments de texte… (avec confirmation) *(fonction étendue)*. | — |
@@ -285,7 +418,8 @@ L'icône d'IDEA dans la barre d'activité ouvre quatre sections.
 - **Groupes de fonctions** : affiche leur arborescence (modules fonction, includes et autres parties) pour ouvrir chaque élément séparément.
 - **Élément de données**, **Structure / Table**, **Domaine**, **Type de table** : ouverts dans l'éditeur de dictionnaire *(fonction étendue)*.
 - **Boutons REPT, CUA et DYNP** (selon le type d'objet) : ouvrent les éditeurs d'éléments de texte, de GUI Status/Title et de Dynpros *(fonctions étendues)*.
-- **Bouton Nouveau** : crée un programme, une classe ou un objet du dictionnaire (élément de données, domaine, structure/table, type de table) en indiquant le nom et le paquet.
+- **Classe de messages** : s'ouvre dans l'éditeur de classes de messages (via l'ADT standard, sans le composant étendu).
+- **Bouton Nouveau** : crée un programme, une classe, une classe de messages ou un objet du dictionnaire (élément de données, domaine, structure/table, type de table) en indiquant le nom et le paquet. Sans le composant étendu, seules les classes de messages peuvent être créées.
 - Si la recherche renvoie un seul résultat, il s'ouvre directement. Conserve les recherches **récentes** et l'**historique**.
 - Les objets que l'extension ne sait pas modifier s'ouvrent dans SAP GUI classique (ou Web GUI, selon `idea.navigation.gui`).
 
