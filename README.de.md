@@ -292,7 +292,7 @@ Die KI sichert und aktiviert nicht direkt in SAP: Das tun Sie im Editor, sobald 
 - Kennwörter und API-Schlüssel werden verschlüsselt im sicheren Speicher von VS Code abgelegt, nie im Klartext oder in den Einstellungen.
 - Von der KI vorgeschlagene Änderungen werden immer als Unterschiede angezeigt und nur angewendet, wenn Sie sie übernehmen; auch dann werden sie erst in SAP gesichert, wenn Sie sichern.
 - Der MCP-Server lauscht nur auf `127.0.0.1` (Ihr eigener Rechner).
-- Datenabfragen sind reine Abfragen (`SELECT`): Sie ändern niemals Tabellendaten.
+- Datenabfragen sind reine Abfragen: Sie ändern niemals Tabellendaten.
 - Wenn Sie bei einer Verbindung «Entwicklung erlaubt» deaktivieren, ist garantiert, dass die KI in diesem System nie etwas ändert: weder Objekte noch Daten.
 - Dieselbe Verbindung kann nicht in zwei VS Code-Fenstern gleichzeitig aktiv sein. Und damit keine Version mit einer anderen verwechselt wird, kann dasselbe Objekt nicht gleichzeitig mit zwei verschiedenen Verbindungen im selben Fenster (zum Beispiel Entwicklung und Produktion) bearbeitet werden, noch mit derselben Verbindung in zwei Fenstern. Anzeigen ist immer möglich.
 
@@ -461,7 +461,7 @@ IDEA unterscheidet zwei Begriffe:
 | `abap_editor_get_seleccion` | Liest den im Editor ausgewählten Text und seine Position. | ✅ |
 | `abap_editor_proponer_cambio` | Schlägt eine Änderung am im Editor geöffneten Quelltext vor: Der Benutzer sieht die Unterschiede und übernimmt oder lehnt sie ab. Bei Übernahme wird sie im Editor angewendet (rückgängig zu machen), ohne in SAP zu sichern. | — |
 | `abap_editor_esperar_propuesta` | Wartet weiter auf die Entscheidung des Benutzers zu einer vorgeschlagenen Änderung, wenn die Prüfung länger dauert, als der MCP-Client in einem einzigen Aufruf warten lässt. | — |
-| `abap_get_datos` | Führt eine schreibgeschützte `SELECT`-Abfrage auf der Datenbank aus *(erweiterte Funktion)*. | ✅ |
+| `abap_get_datos` | Greift schreibgeschützt auf das SAP-System zu, um dessen Daten zu lesen *(erweiterte Funktion)*. | ✅ |
 | `abap_list_dumps_24h` | Listet Laufzeitfehler der letzten 24 Stunden auf (Standard-ADT-Feed). | ✅ |
 | `abap_list_dumps` | Listet Laufzeitfehler jedes Datums auf (entspricht ST22), in kompakter Form *(erweiterte Funktion)*. | ✅ |
 | `abap_get_dump_detalle` | Liefert das Detail eines Dumps: ST22-Zusammenfassung und Aufrufstack; Variablen oder der vollständige Dump nur auf Anfrage *(erweiterte Funktion)*. | ✅ |
@@ -505,7 +505,7 @@ Das IDEA-Symbol in der Aktivitätsleiste öffnet zwei Abschnitte. Codesuche und 
 <details>
 <summary><strong>🧩 Erweiterte Funktionen im Detail</strong></summary>
 
-**Datenabfragen.** Sie ermöglichen der KI, die Daten Ihres SAP-Systems mit schreibgeschützten `SELECT`-Abfragen zu untersuchen (ohne `INSERT`/`UPDATE`/`DELETE` oder DDL). Ohne sie sieht die KI den Code, aber nicht die Daten, und verliert einen Großteil ihrer Analysefähigkeit.
+**Datenabfragen.** Sie ermöglichen der KI, die Daten Ihres SAP-Systems mit schreibgeschützten Abfragen zu untersuchen. Ohne sie sieht die KI den Code, aber nicht die Daten, und verliert einen Großteil ihrer Analysefähigkeit.
 
 **Textelement-Editor (REPT).** Über die Schaltfläche *REPT* in der «SAP-Objektsuche» (oder *Komponente öffnen* im Editor), für ein Programm, eine Klasse oder ein Interface:
 - Öffnet sich im Anzeigemodus (blauer Hintergrund).

@@ -292,7 +292,7 @@ L'IA ne sauvegarde ni n'active directement dans SAP : c'est vous qui le faites d
 - Les mots de passe et les clés d'API sont stockés chiffrés dans le stockage sécurisé de VS Code, jamais en clair ni dans la configuration.
 - Les modifications proposées par l'IA sont toujours affichées sous forme de différences et ne s'appliquent que si vous les acceptez ; même alors, elles ne sont pas sauvegardées dans SAP tant que vous ne sauvegardez pas.
 - Le serveur MCP n'écoute que sur `127.0.0.1` (votre propre machine).
-- Les requêtes de données sont uniquement des requêtes (`SELECT`) : elles ne modifient jamais les données des tables.
+- Les requêtes de données sont uniquement des requêtes : elles ne modifient jamais les données des tables.
 - Si vous décochez «Développement autorisé» sur une connexion, vous avez la garantie que l'IA ne modifiera jamais rien dans ce système : ni objets ni données.
 - Une même connexion ne peut pas être active dans deux fenêtres de VS Code à la fois. Et, pour ne jamais confondre une version avec une autre, un même objet ne peut pas être modifié en même temps avec deux connexions différentes dans la même fenêtre (par exemple, développement et production), ni avec la même connexion dans deux fenêtres. L'afficher est toujours possible.
 
@@ -461,7 +461,7 @@ IDEA distingue deux notions :
 | `abap_editor_get_seleccion` | Lit le texte sélectionné dans l'éditeur et sa position. | ✅ |
 | `abap_editor_proponer_cambio` | Propose une modification du source ouvert dans l'éditeur : l'utilisateur voit les différences et l'accepte ou la refuse. Si elle est acceptée, elle est appliquée dans l'éditeur (annulable), sans sauvegarder dans SAP. | — |
 | `abap_editor_esperar_propuesta` | Continue d'attendre la décision de l'utilisateur sur une modification proposée lorsque l'examen dure plus longtemps que ce que le client MCP permet d'attendre en un seul appel. | — |
-| `abap_get_datos` | Exécute une requête `SELECT` en lecture seule sur la base de données *(fonction étendue)*. | ✅ |
+| `abap_get_datos` | Accède à l'environnement SAP en lecture seule pour en lire les données *(fonction étendue)*. | ✅ |
 | `abap_list_dumps_24h` | Liste les dumps d'exécution des dernières 24 heures (flux ADT standard). | ✅ |
 | `abap_list_dumps` | Liste les dumps d'exécution de n'importe quelle date (équivalent de ST22), sous forme compacte *(fonction étendue)*. | ✅ |
 | `abap_get_dump_detalle` | Renvoie le détail d'un dump : résumé ST22 et pile d'appels ; les variables ou le dump complet seulement sur demande *(fonction étendue)*. | ✅ |
@@ -505,7 +505,7 @@ L'icône d'IDEA dans la barre d'activité ouvre deux sections. La recherche dans
 <details>
 <summary><strong>🧩 Fonctions étendues en détail</strong></summary>
 
-**Requêtes de données.** Elles permettent à l'IA d'explorer les données de votre système SAP avec des requêtes `SELECT` en lecture seule (sans `INSERT`/`UPDATE`/`DELETE` ni DDL). Sans elles, l'IA voit le code mais pas les données, et perd une bonne partie de sa capacité d'analyse.
+**Requêtes de données.** Elles permettent à l'IA d'explorer les données de votre système SAP avec des requêtes en lecture seule. Sans elles, l'IA voit le code mais pas les données, et perd une bonne partie de sa capacité d'analyse.
 
 **Éditeur d'éléments de texte (REPT).** Depuis le bouton *REPT* de la «Recherche d'objet SAP» (ou *Ouvrir le composant* dans l'éditeur), sur un programme, une classe ou une interface :
 - S'ouvre en Mode Affichage (fond bleu).

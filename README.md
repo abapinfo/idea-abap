@@ -292,7 +292,7 @@ La IA no graba ni activa directamente en SAP: eso lo haces tú desde el editor, 
 - Las contraseñas y las claves de API se guardan cifradas en el almacén seguro de VS Code, nunca en texto plano ni en la configuración.
 - Los cambios que propone la IA se muestran siempre como diferencias y solo se aplican si los aceptas; aun así, no se graban en SAP hasta que tú grabas.
 - El servidor MCP escucha solo en `127.0.0.1` (tu propio equipo).
-- Las consultas de datos son solo consultas (`SELECT`): nunca modifican datos de las tablas.
+- Las consultas de datos son solo consultas: nunca modifican datos de las tablas.
 - Si desmarcas «Permite desarrollo» en una conexión, te garantizas que la IA nunca modificará nada en ese sistema: ni objetos ni datos.
 - Una misma conexión no puede estar activa en dos ventanas de VS Code a la vez. Y, para no confundir una versión con otra, un mismo objeto no se puede editar a la vez con dos conexiones distintas en la misma ventana (por ejemplo, desarrollo y producción), ni con la misma conexión en dos ventanas. Visualizarlo sí se puede siempre.
 
@@ -461,7 +461,7 @@ IDEA distingue dos conceptos:
 | `abap_editor_get_seleccion` | Lee el texto seleccionado en el editor y su posición. | ✅ |
 | `abap_editor_proponer_cambio` | Propone un cambio en el fuente abierto en el editor: el usuario ve las diferencias y lo acepta o lo rechaza. Si lo acepta, se aplica en el editor (se puede deshacer), sin grabar en SAP. | — |
 | `abap_editor_esperar_propuesta` | Sigue esperando la decisión del usuario sobre un cambio propuesto cuando la revisión dura más de lo que el cliente MCP permite esperar en una sola llamada. | — |
-| `abap_get_datos` | Ejecuta una consulta `SELECT` de solo lectura sobre la base de datos *(función ampliada)*. | ✅ |
+| `abap_get_datos` | Accede al entorno SAP en modo de solo lectura para leer los datos *(función ampliada)*. | ✅ |
 | `abap_list_dumps_24h` | Lista los dumps de ejecución de las últimas 24 horas (feed estándar de ADT). | ✅ |
 | `abap_list_dumps` | Lista los dumps de ejecución de cualquier fecha (equivalente a ST22), en formato compacto *(función ampliada)*. | ✅ |
 | `abap_get_dump_detalle` | Devuelve el detalle de un dump: resumen de ST22 y pila de llamadas; las variables o el dump completo, solo si se piden *(función ampliada)*. | ✅ |
@@ -505,7 +505,7 @@ El icono de IDEA en la barra de actividad abre dos secciones. La búsqueda en el
 <details>
 <summary><strong>🧩 Funciones ampliadas en detalle</strong></summary>
 
-**Consultas de datos.** Permiten a la IA investigar los datos de tu sistema SAP con consultas `SELECT` de solo lectura (sin `INSERT`/`UPDATE`/`DELETE` ni DDL). Sin ellas, la IA ve el código pero no los datos, y pierde buena parte de su capacidad de análisis.
+**Consultas de datos.** Permiten a la IA investigar los datos de tu sistema SAP con consultas de solo lectura. Sin ellas, la IA ve el código pero no los datos, y pierde buena parte de su capacidad de análisis.
 
 **Editor de elementos de texto (REPT).** Desde el botón *REPT* de «Búsqueda objeto SAP» (o *Abrir componente* en el editor), sobre un programa, clase o interfaz:
 - Se abre en Modo Visualización (fondo azul).

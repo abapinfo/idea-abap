@@ -292,7 +292,7 @@ The AI does not save or activate directly in SAP: you do that from the editor on
 - Passwords and API keys are stored encrypted in VS Code's secure storage, never in plain text or in the settings.
 - Changes proposed by the AI are always shown as differences and only applied if you accept them; even then, they are not saved to SAP until you save.
 - The MCP server only listens on `127.0.0.1` (your own machine).
-- Data queries are queries only (`SELECT`): they never modify table data.
+- Data queries are queries only: they never modify table data.
 - If you untick «Allows development» on a connection, you are guaranteed that the AI will never change anything in that system: neither objects nor data.
 - The same connection cannot be active in two VS Code windows at once. And, so that one version is never mistaken for another, the same object cannot be edited at the same time with two different connections in the same window (for example, development and production), nor with the same connection in two windows. Displaying it is always allowed.
 
@@ -461,7 +461,7 @@ IDEA distinguishes two concepts:
 | `abap_editor_get_seleccion` | Reads the text selected in the editor and its position. | ✅ |
 | `abap_editor_proponer_cambio` | Proposes a change to the source open in the editor: the user sees the differences and accepts or rejects it. If accepted, it is applied in the editor (it can be undone), without saving to SAP. | — |
 | `abap_editor_esperar_propuesta` | Keeps waiting for the user's decision on a proposed change when the review takes longer than the MCP client allows a single call to wait. | — |
-| `abap_get_datos` | Runs a read-only `SELECT` query on the database *(extended feature)*. | ✅ |
+| `abap_get_datos` | Accesses the SAP system in read-only mode to read its data *(extended feature)*. | ✅ |
 | `abap_list_dumps_24h` | Lists runtime dumps from the last 24 hours (standard ADT feed). | ✅ |
 | `abap_list_dumps` | Lists runtime dumps from any date (equivalent to ST22), in compact form *(extended feature)*. | ✅ |
 | `abap_get_dump_detalle` | Returns the detail of a dump: ST22 summary and call stack; variables or the full dump only on request *(extended feature)*. | ✅ |
@@ -505,7 +505,7 @@ The IDEA icon in the activity bar opens two sections. Code search and version hi
 <details>
 <summary><strong>🧩 Extended features in detail</strong></summary>
 
-**Data queries.** They let the AI investigate the data in your SAP system with read-only `SELECT` queries (no `INSERT`/`UPDATE`/`DELETE` or DDL). Without them, the AI sees the code but not the data, and loses much of its analytical ability.
+**Data queries.** They let the AI investigate the data in your SAP system with read-only queries. Without them, the AI sees the code but not the data, and loses much of its analytical ability.
 
 **Text element editor (REPT).** From the *REPT* button in «SAP object search» (or *Open component* in the editor), on a program, class or interface:
 - Opens in Display mode (blue background).
