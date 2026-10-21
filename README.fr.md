@@ -284,6 +284,10 @@ L'IA ne sauvegarde ni n'active directement dans SAP : c'est vous qui le faites d
 
 **Connexion depuis votre client MCP :** les clients intégrés à VS Code le détectent tout seuls ; dans les clients externes (Claude Code, Cursor…), ajoutez un serveur de type `http` pointant vers `http://127.0.0.1:<port>/mcp` (port configurable pour chaque connexion, par exemple `4856`).
 
+<p align="center">
+  <img src="resources/readme/idea-sistemas.fr.jpg" alt="Architecture d'IDEA : SAP, Visual Studio Code, IDEA et assistants IA" width="720">
+</p>
+
 ---
 
 ## 🔐 Sécurité et contrôle

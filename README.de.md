@@ -284,6 +284,10 @@ Die KI sichert und aktiviert nicht direkt in SAP: Das tun Sie im Editor, sobald 
 
 **Verbindung aus Ihrem MCP-Client:** In VS Code integrierte Clients erkennen ihn automatisch; in externen Clients (Claude Code, Cursor…) fügen Sie einen Server vom Typ `http` hinzu, der auf `http://127.0.0.1:<Port>/mcp` zeigt (Port je Verbindung konfigurierbar, zum Beispiel `4856`).
 
+<p align="center">
+  <img src="resources/readme/idea-sistemas.de.jpg" alt="IDEA-Architektur: SAP, Visual Studio Code, IDEA und KI-Assistenten" width="720">
+</p>
+
 ---
 
 ## 🔐 Sicherheit und Kontrolle

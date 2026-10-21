@@ -284,6 +284,10 @@ The AI does not save or activate directly in SAP: you do that from the editor on
 
 **Connecting from your MCP client:** clients built into VS Code detect it by themselves; in external ones (Claude Code, Cursor…) add an `http` server pointing to `http://127.0.0.1:<port>/mcp` (port configurable per connection, for example `4856`).
 
+<p align="center">
+  <img src="resources/readme/idea-sistemas.en.jpg" alt="IDEA architecture: SAP, Visual Studio Code, IDEA and AI assistants" width="720">
+</p>
+
 ---
 
 ## 🔐 Security and control

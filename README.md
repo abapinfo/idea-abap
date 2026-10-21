@@ -284,6 +284,10 @@ La IA no graba ni activa directamente en SAP: eso lo haces tú desde el editor, 
 
 **Conexión desde tu cliente MCP:** los clientes integrados en VS Code lo detectan solos; en los externos (Claude Code, Cursor…) añade un servidor de tipo `http` apuntando a `http://127.0.0.1:<puerto>/mcp` (puerto configurable en cada conexión, por ejemplo `4856`).
 
+<p align="center">
+  <img src="resources/readme/idea-sistemas.es.jpg" alt="Arquitectura de IDEA: SAP, Visual Studio Code, IDEA y asistentes de IA" width="720">
+</p>
+
 ---
 
 ## 🔐 Seguridad y control
