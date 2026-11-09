@@ -111,15 +111,17 @@ Comparison on SAP ECC with NetWeaver 7.50 between SAP's ADT for Eclipse, other A
 | CDS views and type groups <br><sub>`DDLS · TYPE`</sub> | 🟢 | 🟢 | ➖ | 🔴 |
 | Message classes <br><sub>`MSAG`</sub> | 🟢 | 🟢 | ➖ | 🟢 Creation, table editing, long text and where-used of each message |
 | **Data dictionary** | | | | |
-| Data elements <br><sub>`DTEL`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
-| Domains <br><sub>`DOMA`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Fixed values included |
+| Data elements <br><sub>`DTEL`</sub> | 🟡 Depends on version | 🟡 Depends on version | 🟢 | 🟢 **AMP** |
+| Domains <br><sub>`DOMA`</sub> | 🟡 Depends on version | 🟡 Depends on version | 🟢 | 🟢 **AMP** Fixed values included |
 | Structures <br><sub>`TABL`</sub> | 🟢 | 🟢 As source code | 🟢 | 🟢 **AMP** Field editor with navigation |
-| Database tables <br><sub>`TABL`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
-| Table types <br><sub>`TTYP`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
+| Database tables <br><sub>`TABL`</sub> | 🟡 Depends on version | 🟡 Depends on version | 🟢 | 🟢 **AMP** |
+| Table types <br><sub>`TTYP`</sub> | 🟡 Depends on version | 🟡 Depends on version | 🟢 | 🟢 **AMP** |
 | **Texts and classic UI** | | | | |
-| Text elements <br><sub>`REPT` · text symbols and selection texts</sub> | 🟡 Depends on release | 🟡 Depends on release | 🟢 | 🟢 **AMP** |
+| Text elements <br><sub>`REPT` · text symbols and selection texts</sub> | 🟡 Depends on version | 🟡 Depends on version | 🟢 | 🟢 **AMP** |
 | GUI Status / Title <br><sub>`CUAD` · SE41</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Create, delete and edit functions, statuses and toolbar |
 | Dynpros <br><sub>`DYNP` · SE51</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Visual editor for fields and containers |
+| **Smart Forms** | | | | |
+| Smart Forms <br><sub>`SSFO` · SMARTFORMS</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Tree editor with all properties, code included |
 | **RAP and OData** | | | | |
 | RAP business objects <br><sub>`BDEF · SRVD` · NetWeaver 7.54 or S/4HANA only</sub> | 🟢 | 🟡 Depending on the extension, as source code | 🔴 | 🔴 |
 | RAP generator <br><sub>Table, CDS, behaviour and service in one step · NetWeaver 7.54 or S/4HANA only</sub> | 🟢 | 🔴 | 🔴 | 🔴 |
@@ -127,7 +129,7 @@ Comparison on SAP ECC with NetWeaver 7.50 between SAP's ADT for Eclipse, other A
 | **Object lifecycle** | | | | |
 | Search objects | 🟢 | 🟢 | ➖ | 🟢 With recent items and history |
 | Create code objects <br><sub>Programs, classes and functions</sub> | 🟢 | 🟢 | 🟢 Programs and classes | 🟡 **AMP** Programs, classes and message classes; no functions |
-| Create dictionary objects <br><sub>`DTEL · DOMA · TABL · TTYP`</sub> | 🟡 Structures only | 🟡 Structures only | 🟢 | 🟢 **AMP** |
+| Create dictionary objects <br><sub>`DTEL · DOMA · TABL · TTYP`</sub> | 🟡 Depends on version | 🟡 Depends on version | 🟢 | 🟢 **AMP** |
 | Display / Edit mode <br><sub>Explicit object lock, as in SE38</sub> | 🟡 Locks when you start typing | 🟡 Locks when you start typing | 🟢 Any object, dynpros too | 🟢 `Ctrl+F1`, state always visible |
 | Transport request on save | 🟢 | 🟢 | 🟢 Open requests and request creation | 🟢 |
 | Activation and inactive objects | 🟢 | 🟢 Mass activation | ➖ | 🟢 Warning about modified parts |

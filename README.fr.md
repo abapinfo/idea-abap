@@ -111,15 +111,17 @@ Comparatif sur SAP ECC avec NetWeaver 7.50 entre l'ADT de SAP pour Eclipse, d'au
 | Vues CDS et groupes de types <br><sub>`DDLS · TYPE`</sub> | 🟢 | 🟢 | ➖ | 🔴 |
 | Classes de messages <br><sub>`MSAG`</sub> | 🟢 | 🟢 | ➖ | 🟢 Création, édition en tableau, texte explicatif et utilisations de chaque message |
 | **Dictionnaire de données** | | | | |
-| Éléments de données <br><sub>`DTEL`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
-| Domaines <br><sub>`DOMA`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Valeurs fixes incluses |
+| Éléments de données <br><sub>`DTEL`</sub> | 🟡 Selon la version | 🟡 Selon la version | 🟢 | 🟢 **AMP** |
+| Domaines <br><sub>`DOMA`</sub> | 🟡 Selon la version | 🟡 Selon la version | 🟢 | 🟢 **AMP** Valeurs fixes incluses |
 | Structures <br><sub>`TABL`</sub> | 🟢 | 🟢 Comme code source | 🟢 | 🟢 **AMP** Éditeur de champs avec navigation |
-| Tables de base de données <br><sub>`TABL`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
-| Types de table <br><sub>`TTYP`</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** |
+| Tables de base de données <br><sub>`TABL`</sub> | 🟡 Selon la version | 🟡 Selon la version | 🟢 | 🟢 **AMP** |
+| Types de table <br><sub>`TTYP`</sub> | 🟡 Selon la version | 🟡 Selon la version | 🟢 | 🟢 **AMP** |
 | **Textes et interface classique** | | | | |
-| Éléments de texte <br><sub>`REPT` · symboles de texte et textes de sélection</sub> | 🟡 Selon la release | 🟡 Selon la release | 🟢 | 🟢 **AMP** |
+| Éléments de texte <br><sub>`REPT` · symboles de texte et textes de sélection</sub> | 🟡 Selon la version | 🟡 Selon la version | 🟢 | 🟢 **AMP** |
 | GUI Status / Title <br><sub>`CUAD` · SE41</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Création, suppression et édition des fonctions, status et barre d'outils |
 | Dynpros <br><sub>`DYNP` · SE51</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Éditeur visuel des champs et conteneurs |
+| **Smart Forms** | | | | |
+| Smart Forms <br><sub>`SSFO` · SMARTFORMS</sub> | 🔴 | 🔴 | 🟢 | 🟢 **AMP** Éditeur en arborescence avec toutes les propriétés, code inclus |
 | **RAP et OData** | | | | |
 | Objets métier RAP <br><sub>`BDEF · SRVD` · uniquement NetWeaver 7.54 ou S/4HANA</sub> | 🟢 | 🟡 Selon l'extension, comme code source | 🔴 | 🔴 |
 | Générateur RAP <br><sub>Table, CDS, comportement et service en une seule étape · uniquement NetWeaver 7.54 ou S/4HANA</sub> | 🟢 | 🔴 | 🔴 | 🔴 |
@@ -127,7 +129,7 @@ Comparatif sur SAP ECC avec NetWeaver 7.50 entre l'ADT de SAP pour Eclipse, d'au
 | **Cycle de vie de l'objet** | | | | |
 | Rechercher des objets | 🟢 | 🟢 | ➖ | 🟢 Avec récents et historique |
 | Créer des objets de code <br><sub>Programmes, classes et fonctions</sub> | 🟢 | 🟢 | 🟢 Programmes et classes | 🟡 **AMP** Programmes, classes et classes de messages ; pas de fonctions |
-| Créer des objets du dictionnaire <br><sub>`DTEL · DOMA · TABL · TTYP`</sub> | 🟡 Structures seulement | 🟡 Structures seulement | 🟢 | 🟢 **AMP** |
+| Créer des objets du dictionnaire <br><sub>`DTEL · DOMA · TABL · TTYP`</sub> | 🟡 Selon la version | 🟡 Selon la version | 🟢 | 🟢 **AMP** |
 | Mode Affichage / Édition <br><sub>Verrouillage explicite de l'objet, comme dans SE38</sub> | 🟡 Verrouille dès qu'on commence à écrire | 🟡 Verrouille dès qu'on commence à écrire | 🟢 Tout objet, dynpros compris | 🟢 `Ctrl+F1`, état toujours visible |
 | Ordre de transport à la sauvegarde | 🟢 | 🟢 | 🟢 Ordres ouverts et création d'ordre | 🟢 |
 | Activation et objets inactifs | 🟢 | 🟢 Activation en masse | ➖ | 🟢 Avertissement des parties modifiées |
